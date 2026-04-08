@@ -1,0 +1,208 @@
+[gd_scene load_steps=10 format=3 uid="uid://3p5sc1txke8ol"]
+
+[ext_resource type="Script" path="res://Scripts/ResultScreen.gd" id="1_5o4o2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.1, 0.14, 0.22, 0.97)
+border_color = Color(0.3, 0.45, 0.7, 0.5)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 20
+shadow_offset = Vector2(0, 8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_divider"]
+bg_color = Color(0.3, 0.42, 0.65, 0.35)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_revive"]
+bg_color = Color(0.18, 0.45, 0.2, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.1, 0.35, 0.1, 0.5)
+shadow_size = 6
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_double"]
+bg_color = Color(0.45, 0.32, 0.05, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.4, 0.28, 0.0, 0.5)
+shadow_size = 6
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_primary"]
+bg_color = Color(0.302, 0.588, 1.0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_secondary"]
+bg_color = Color(0.18, 0.22, 0.32, 1)
+border_color = Color(0.4, 0.5, 0.7, 0.6)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="ResultScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5o4o2")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.06, 0.12, 1)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card" type="PanelContainer" parent="Center"]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="CardInner" type="MarginContainer" parent="Center/Card"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_bottom = 48
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Center/Card/CardInner"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Center/Card/CardInner/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 46
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "本局结算"
+horizontal_alignment = 1
+
+[node name="Divider1" type="Panel" parent="Center/Card/CardInner/VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_divider")
+
+[node name="ScoreArea" type="VBoxContainer" parent="Center/Card/CardInner/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ScoreTip" type="Label" parent="Center/Card/CardInner/VBoxContainer/ScoreArea"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.6, 0.72, 0.9, 0.8)
+text = "本局得分"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="Center/Card/CardInner/VBoxContainer/ScoreArea"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "0"
+horizontal_alignment = 1
+
+[node name="HighScoreArea" type="HBoxContainer" parent="Center/Card/CardInner/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HighScoreTip" type="Label" parent="Center/Card/CardInner/VBoxContainer/HighScoreArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.6, 0.72, 0.9, 0.8)
+text = "最高分"
+horizontal_alignment = 2
+
+[node name="HighScoreLabel" type="Label" parent="Center/Card/CardInner/VBoxContainer/HighScoreArea"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1.0, 0.85, 0.24, 1)
+text = "0"
+horizontal_alignment = 0
+
+[node name="StatusLabel" type="Label" parent="Center/Card/CardInner/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.7, 0.85, 0.7, 0.9)
+text = "距离目标还差 0 分"
+horizontal_alignment = 1
+
+[node name="Divider2" type="Panel" parent="Center/Card/CardInner/VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_divider")
+
+[node name="ReviveButton" type="Button" parent="Center/Card/CardInner/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.8, 1.0, 0.82, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_revive")
+text = "🎬 看广告复活 +10 秒"
+
+[node name="DoubleScoreButton" type="Button" parent="Center/Card/CardInner/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(1.0, 0.9, 0.6, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_double")
+text = "🎬 看广告双倍得分"
+
+[node name="ReplayButton" type="Button" parent="Center/Card/CardInner/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_primary")
+text = "再来一局"
+
+[node name="HomeButton" type="Button" parent="Center/Card/CardInner/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.8, 0.9, 1.0, 0.9)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_secondary")
+text = "返回主页"

@@ -1,0 +1,211 @@
+[gd_scene format=3 uid="uid://cdqel1lg1bsqg"]
+
+[ext_resource type="Script" uid="uid://csvf33dsu074x" path="res://Scripts/MainMenu.gd" id="1_xly8n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_score_panel"]
+bg_color = Color(0.15, 0.2, 0.3, 0.8)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.55, 0.8, 0.4)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_primary"]
+bg_color = Color(0.302, 0.588, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.1, 0.3, 0.8, 0.5)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_primary_pressed"]
+bg_color = Color(0.2, 0.45, 0.85, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_primary_hover"]
+bg_color = Color(0.42, 0.66, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_secondary"]
+bg_color = Color(0.18, 0.22, 0.32, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.5, 0.7, 0.6)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="MainMenu" type="Control" unique_id=45550405]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xly8n")
+
+[node name="Background" type="ColorRect" parent="." unique_id=61094838]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.055, 0.075, 0.13, 1)
+
+[node name="DecoBlocks" type="Control" parent="." unique_id=1973748411]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Deco1" type="ColorRect" parent="DecoBlocks" unique_id=1360532752]
+modulate = Color(0.302, 0.588, 1, 0.12)
+layout_mode = 0
+offset_left = -40.0
+offset_top = 80.0
+offset_right = 100.0
+offset_bottom = 220.0
+rotation = 0.4
+
+[node name="Deco2" type="ColorRect" parent="DecoBlocks" unique_id=832518255]
+modulate = Color(0.424, 0.796, 0.467, 0.1)
+layout_mode = 0
+offset_left = 580.0
+offset_top = 200.0
+offset_right = 760.0
+offset_bottom = 380.0
+rotation = -0.3
+
+[node name="Deco3" type="ColorRect" parent="DecoBlocks" unique_id=271950454]
+modulate = Color(1, 0.851, 0.239, 0.1)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 1050.0
+offset_right = 280.0
+offset_bottom = 1230.0
+rotation = 0.5
+
+[node name="Deco4" type="ColorRect" parent="DecoBlocks" unique_id=969027579]
+modulate = Color(1, 0.42, 0.42, 0.12)
+layout_mode = 0
+offset_left = 500.0
+offset_top = 950.0
+offset_right = 640.0
+offset_bottom = 1090.0
+rotation = -0.6
+
+[node name="ContentContainer" type="MarginContainer" parent="." unique_id=1875627052]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 56
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 56
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer" unique_id=994444171]
+layout_mode = 2
+theme_override_constants/separation = 28
+alignment = 1
+
+[node name="TitleArea" type="VBoxContainer" parent="ContentContainer/VBoxContainer" unique_id=1855952159]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="ContentContainer/VBoxContainer/TitleArea" unique_id=1817047398]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.2, 0.5, 1, 0.6)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 4
+theme_override_font_sizes/font_size = 58
+text = "通勤消消乐"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="ContentContainer/VBoxContainer/TitleArea" unique_id=1474871034]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.75, 0.9, 0.9)
+theme_override_font_sizes/font_size = 22
+text = "连接同色方块，消除尽可能多的分数！"
+horizontal_alignment = 1
+
+[node name="SpacerTop" type="Control" parent="ContentContainer/VBoxContainer" unique_id=27292629]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="HighScoreArea" type="PanelContainer" parent="ContentContainer/VBoxContainer" unique_id=1309525852]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_score_panel")
+
+[node name="HighScoreInner" type="VBoxContainer" parent="ContentContainer/VBoxContainer/HighScoreArea" unique_id=638412970]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="HighScoreTip" type="Label" parent="ContentContainer/VBoxContainer/HighScoreArea/HighScoreInner" unique_id=256526111]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.7, 0.85, 0.8)
+theme_override_font_sizes/font_size = 18
+text = "历史最高"
+horizontal_alignment = 1
+
+[node name="HighScoreLabel" type="Label" parent="ContentContainer/VBoxContainer/HighScoreArea/HighScoreInner" unique_id=399781488]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.24, 1)
+theme_override_font_sizes/font_size = 44
+text = "0"
+horizontal_alignment = 1
+
+[node name="SpacerMid" type="Control" parent="ContentContainer/VBoxContainer" unique_id=1580521437]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="ContentContainer/VBoxContainer" unique_id=1350890627]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_primary")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_primary_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_primary_hover")
+text = "开始游戏"
+
+[node name="ToggleSoundButton" type="Button" parent="ContentContainer/VBoxContainer" unique_id=1411469558]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.88, 1, 0.9)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_secondary")
+text = "音效：开"
+
+[node name="RulesLabel" type="Label" parent="ContentContainer/VBoxContainer" unique_id=56877580]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.6, 0.75, 0.65)
+theme_override_font_sizes/font_size = 18
+text = "点击3个或以上同色方块消除 · 目标1000分"
+horizontal_alignment = 1
+autowrap_mode = 3

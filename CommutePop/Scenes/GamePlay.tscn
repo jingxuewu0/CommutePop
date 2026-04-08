@@ -1,0 +1,221 @@
+[gd_scene load_steps=10 format=3 uid="uid://6t4hwtw1e2ln"]
+
+[ext_resource type="Script" path="res://Scripts/GamePlay.gd" id="1_gm6fp"]
+[ext_resource type="PackedScene" path="res://Scenes/Block.tscn" id="2_ywq0j"]
+[ext_resource type="Script" path="res://Scripts/Grid.gd" id="3_e2vyo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud_panel"]
+bg_color = Color(0.1, 0.14, 0.22, 0.92)
+border_color = Color(0.3, 0.42, 0.65, 0.4)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_bg"]
+bg_color = Color(0.15, 0.18, 0.28, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_fill"]
+bg_color = Color(0.302, 0.588, 1.0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_danger"]
+bg_color = Color(0.18, 0.22, 0.32, 1)
+border_color = Color(1.0, 0.4, 0.4, 0.5)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_neutral"]
+bg_color = Color(0.18, 0.22, 0.32, 1)
+border_color = Color(0.4, 0.5, 0.7, 0.5)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="GamePlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gm6fp")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.06, 0.1, 1)
+
+[node name="HUD" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 200.0
+grow_horizontal = 2
+
+[node name="HUDInner" type="VBoxContainer" parent="HUD"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TopBar" type="HBoxContainer" parent="HUD/HUDInner"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ScorePanel" type="PanelContainer" parent="HUD/HUDInner/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_hud_panel")
+
+[node name="ScoreVBox" type="VBoxContainer" parent="HUD/HUDInner/TopBar/ScorePanel"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="ScoreTip" type="Label" parent="HUD/HUDInner/TopBar/ScorePanel/ScoreVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.6, 0.72, 0.9, 0.8)
+text = "得分"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="HUD/HUDInner/TopBar/ScorePanel/ScoreVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "0"
+horizontal_alignment = 1
+
+[node name="StepPanel" type="PanelContainer" parent="HUD/HUDInner/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_hud_panel")
+
+[node name="StepVBox" type="VBoxContainer" parent="HUD/HUDInner/TopBar/StepPanel"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="StepTip" type="Label" parent="HUD/HUDInner/TopBar/StepPanel/StepVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.6, 0.72, 0.9, 0.8)
+text = "剩余时间"
+horizontal_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="HUD/HUDInner/TopBar/StepPanel/StepVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(1.0, 0.85, 0.24, 1)
+text = "30"
+horizontal_alignment = 1
+
+[node name="ProgressArea" type="VBoxContainer" parent="HUD/HUDInner"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD/HUDInner/ProgressArea"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_progress_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_progress_fill")
+theme_override_font_sizes/font_size = 12
+value = 0.0
+show_percentage = false
+
+[node name="ProgressHint" type="Label" parent="HUD/HUDInner/ProgressArea"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.6, 0.72, 0.9, 0.7)
+text = "目标：1000 分"
+horizontal_alignment = 1
+
+[node name="ComboLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 210.0
+offset_right = 200.0
+offset_bottom = 260.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 38
+theme_override_colors/font_color = Color(1.0, 0.85, 0.24, 1)
+modulate = Color(1, 1, 1, 0)
+text = "连击 x2"
+horizontal_alignment = 1
+
+[node name="Grid" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(114, 280)
+script = ExtResource("3_e2vyo")
+block_scene = ExtResource("2_ywq0j")
+
+[node name="BottomBar" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -120.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ButtonRow" type="HBoxContainer" parent="BottomBar"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RestartButton" type="Button" parent="BottomBar/ButtonRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_danger")
+theme_override_colors/font_color = Color(1.0, 0.75, 0.75, 1)
+text = "重新开始"
+
+[node name="HomeButton" type="Button" parent="BottomBar/ButtonRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_neutral")
+theme_override_colors/font_color = Color(0.8, 0.9, 1.0, 1)
+text = "返回主页"

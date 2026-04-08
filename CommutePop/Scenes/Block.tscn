@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0k7cyffp1i0y"]
+
+[ext_resource type="Script" path="res://Scripts/Block.gd" id="1_5xgmg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3q6dy"]
+size = Vector2(76, 76)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_block"]
+bg_color = Color(1, 0.419608, 0.419608, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inner"]
+draw_center = false
+border_color = Color(1, 1, 1, 0.25)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[node name="Block" type="Area2D"]
+script = ExtResource("1_5xgmg")
+input_pickable = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 79.0
+offset_bottom = 79.0
+color = Color(1, 0.419608, 0.419608, 1)
+
+[node name="Border" type="Panel" parent="."]
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 79.0
+offset_bottom = 79.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inner")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(41, 41)
+shape = SubResource("RectangleShape2D_3q6dy")
