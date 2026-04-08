@@ -23,6 +23,7 @@ config/icon="res://icon.svg"
 
 GameManager="*res://Scripts/GameManager.gd"
 AdManager="*res://Scripts/AdManager.gd"
+SoundManager="*res://Scripts/SoundManager.gd"
 
 [display]
 
@@ -41,5 +42,4 @@ tap={
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+renderer/rendering_method="mobile"

@@ -4,6 +4,7 @@ signal score_changed(score: int)
 signal time_changed(time_left: float)
 signal game_finished(result: Dictionary)
 signal revive_used
+signal new_record(score: int)
 
 const SAVE_PATH := "user://save.json"
 const DEFAULT_TIME := 30.0
@@ -15,6 +16,7 @@ var time_left: float = DEFAULT_TIME
 var target_score := DEFAULT_TARGET_SCORE
 var revive_available := true
 var pending_resume := false
+var last_run_is_new_record := false
 var _game_running := false
 
 func _ready() -> void:
@@ -56,10 +58,15 @@ func register_clear(_block_count: int, score_gained: int) -> void:
 
 func finish_run(last_clear_count: int = 0) -> void:
 	_game_running = false
+	var is_new_record := score > high_score and score > 0
 	high_score = maxi(high_score, score)
+	last_run_is_new_record = is_new_record
 	save_high_score(high_score)
+	if is_new_record:
+		new_record.emit(high_score)
 	var won := score >= target_score
 	game_finished.emit({
+		"is_new_record": is_new_record,
 		"score": score,
 		"high_score": high_score,
 		"target_score": target_score,
@@ -67,6 +74,7 @@ func finish_run(last_clear_count: int = 0) -> void:
 		"last_clear_count": last_clear_count,
 		"revive_available": revive_available
 	})
+
 
 func can_revive() -> bool:
 	return revive_available
@@ -87,10 +95,18 @@ func apply_double_score() -> int:
 	return score
 
 func save_high_score(value: int) -> void:
+	var data: Dictionary = {}
+	if FileAccess.file_exists(SAVE_PATH):
+		var rf := FileAccess.open(SAVE_PATH, FileAccess.READ)
+		if rf:
+			var parsed: Variant = JSON.parse_string(rf.get_as_text())
+			if parsed is Dictionary:
+				data = parsed
+	data["high_score"] = value
 	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file == null:
 		return
-	file.store_string(JSON.stringify({"high_score": value}))
+	file.store_string(JSON.stringify(data))
 
 func load_high_score() -> int:
 	if not FileAccess.file_exists(SAVE_PATH):
